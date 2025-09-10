@@ -93,9 +93,9 @@ UI Usability Satisfaction	92% rated Excellent/Good
 🌐 Multilingual NLP (Hindi, Tamil, Bengali, etc.)
 ⚠️ Real-time crisis alert & notification system
 
-📄 License
+## 📄 License
 This project is intended for academic and research purposes. For reuse or deployment in production environments, contact the authors.
-👨‍💻 Developed By
+## 👨‍💻 Developed By
 Chetan Chauhan,
 Department of Computer Science and Engineering (IOT), NIET, Greater Noida
 ---
