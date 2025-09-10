@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 <br>
 ---
-### ## 🚀 Live Demo
+## 🚀 Live Demo
 
 You can view the live version of my portfolio here:
 
