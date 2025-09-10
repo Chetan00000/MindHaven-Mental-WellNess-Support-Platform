@@ -2,37 +2,21 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  PopoverGroup,
-} from "@headlessui/react";
+import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/20/solid";
 
-const products = [
-  { name: "Product 1", href: "#" },
-  { name: "Product 2", href: "#" },
-  { name: "Product 3", href: "#" },
-];
-
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
+// Define navigation links in one place for easy management
+const navigation = [
+  { name: "Home", href: "/home" },
+  { name: "Book Appointment", href: "/book-appointment" },
+  { name: "About Us", href: "/about" },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Only show logo on login and signup pages
+  // Only show logo on login and signup pages, hide nav links
   const isAuthPage = pathname === "/login" || pathname === "/signup";
 
   return (
@@ -44,20 +28,19 @@ export default function Header() {
         {/* Logo */}
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+            <span className="sr-only">MindHaven</span>
             <img
               src="/assets/MindHaven.png"
               alt="logo"
-              width={250}
-              height={1450}
+              className="h-12 w-auto" // Adjusted height for better proportion
             />
           </a>
         </div>
 
-        {/* Only render nav/buttons if not on auth pages */}
+        {/* --- Render nav/buttons only if it's NOT an auth page --- */}
         {!isAuthPage && (
-          <>  
-            {/* Mobile Menu Button */}
+          <>
+            {/* Mobile Menu Button (Hamburger Icon) */}
             <div className="flex lg:hidden">
               <button
                 type="button"
@@ -69,23 +52,24 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Desktop Navigation */}
-            <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-              <a href="/home" className="rounded-md text-sm px-4 py-2 bg-amber-50 font-semibold text-gray-900 hover:bg-amber-300">
-                Home
-              </a>
-              <a href="/book-appointment" className="rounded-md text-sm px-4 py-2 bg-amber-50 font-semibold text-gray-900 hover:bg-amber-300">
-                Book Appointment
-              </a>
-              <a href="/about" className="rounded-md text-sm px-4 py-2 bg-amber-50 font-semibold text-gray-900 hover:bg-amber-300">
-                About Us
-              </a>
-            </PopoverGroup>
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex lg:gap-x-8">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="rounded-md text-sm px-4 py-2 bg-amber-50 font-semibold text-gray-900 hover:bg-amber-300"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
           </>
         )}
       </nav>
 
-      {/* Mobile Navigation Menu */}
+      {/* --- Mobile Navigation Menu (Dialog) --- */}
+      {/* Also hidden on auth pages */}
       {!isAuthPage && (
         <Dialog
           open={mobileMenuOpen}
@@ -96,11 +80,11 @@ export default function Header() {
           <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
+                <span className="sr-only">MindHaven</span>
                 <img
                   alt="logo"
                   src="/assets/MindHaven.png"
-                  className="h-8 w-auto"
+                  className="h-10 w-auto" // Adjusted height
                 />
               </a>
               <button
@@ -117,47 +101,15 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {/* Products Section */}
-                  <Disclosure as="div" className="-mx-3">
-                    <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base font-semibold text-gray-900 hover:bg-gray-50">
-                      Products
-                      <ChevronDownIcon
-                        aria-hidden="true"
-                        className="size-5 flex-none group-data-open:rotate-180"
-                      />
-                    </DisclosureButton>
-                    <DisclosurePanel className="mt-2 space-y-2">
-                      {[...products, ...callsToAction].map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className="block rounded-lg py-2 pr-3 pl-6 text-sm font-semibold text-gray-900 hover:bg-gray-50"
-                        >
-                          {item.name}
-                        </a>
-                      ))}
-                    </DisclosurePanel>
-                  </Disclosure>
-
-                  {/* Other Links */}
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Features
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Marketplace
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Company
-                  </a>
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
