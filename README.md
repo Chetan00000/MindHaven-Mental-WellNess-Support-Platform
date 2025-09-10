@@ -8,7 +8,7 @@
 ---
 ## 🚀 Live Demo
 
-You can view the live version of my portfolio here:
+You can view the live version of my project here:
 
 **[➡️ View Live Demo](https://mind-haven-mental-well-ness-support.vercel.app/)**
 ---
