@@ -91,9 +91,8 @@ UI Usability Satisfaction	92% rated Excellent/Good
 🧑‍⚕️ Therapist integration portal
 
 🌐 Multilingual NLP (Hindi, Tamil, Bengali, etc.)
-
 ⚠️ Real-time crisis alert & notification system
----
+
 📄 License
 This project is intended for academic and research purposes. For reuse or deployment in production environments, contact the authors.
 ---
