@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function ChatPage() {
+  // ✅ DEBUG: Let's check the value of the environment variable
+  console.log("Python API URL from chat page:", process.env.NEXT_PUBLIC_PYTHON_API_URL);
+
   // Initialize sessionId from localStorage or generate new
   const [sessionId, setSessionId] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -36,8 +39,12 @@ export default function ChatPage() {
     let isMounted = true;
 
     const checkHealth = () => {
-      fetch('http://localhost:5000/health')
-        .then(res => res.json())
+      // ✅ FIX: Use backticks (`) instead of single quotes (')
+      fetch(`${process.env.NEXT_PUBLIC_PYTHON_API_URL}/health`)
+        .then(res => {
+            if (res.ok) return res.json();
+            throw new Error('Network response was not ok.');
+        })
         .then(data => {
           if (isMounted) {
             setServerReady(data.status === 'ready');
@@ -71,7 +78,8 @@ export default function ChatPage() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/ask', {
+      // ✅ FIX: Use backticks (`) instead of single quotes (')
+      const res = await fetch(`${process.env.NEXT_PUBLIC_PYTHON_API_URL}/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: message, session_id: sessionId }),
@@ -158,3 +166,4 @@ export default function ChatPage() {
     </div>
   );
 }
+
