@@ -56,6 +56,7 @@ You can view the live version of my portfolio here:
 cd client
 npm install
 npm run dev
+
 ## 🗂️ Backend Setup
 
 cd server
