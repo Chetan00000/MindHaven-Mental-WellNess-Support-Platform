@@ -33,17 +33,7 @@ export default function AboutPage() {
       {/* Adjusting the grid for better alignment with two items */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto w-full justify-center"> {/* Changed max-w-5xl to max-w-2xl and added mx-auto, w-full, justify-center */}
         {/* Person 1: Chetan */}
-        <div className="flex flex-col items-center bg-gray-100 p-6 rounded-2xl shadow">
-          <Image
-            src="/pushp.jpeg" // Place actual image in /public folder
-            alt="Pushp Choudhary"
-            width={150}
-            height={150}
-            className="rounded-full object-cover"
-          />
-          <h3 className="mt-4 text-xl font-semibold">Pushp Choudhary</h3>
-          <p>College: NIET</p>
-        </div>
+       
         <div className="flex flex-col items-center bg-gray-100 p-6 rounded-2xl shadow">
           <Image
             src="/chetan.jpeg" // Place actual image in /public folder
